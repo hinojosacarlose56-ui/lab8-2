@@ -1,30 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background-color: #fdf6ec;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, #472f0a 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, #b33b3b 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 10%, #d4ecd4 0%, transparent 40%);
+  color: #271606;
+  margin: 0;
+  min-height: 100vh;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2.5rem 2rem;
+  text-align: left;
 }
 
+/* Logo */
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4em;
+  padding: 0.75em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 300ms ease;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1.2em #9a634caa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 1.2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,10 +48,175 @@
   }
 }
 
+/* Card */
 .card {
-  padding: 2em;
+  background: #262524;
+  border: 1px solid #f0dfc0;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(180, 100, 40, 0.08);
 }
 
+/* Read the docs */
 .read-the-docs {
-  color: #888;
+  color: #a0836a;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Headings */
+h1 {
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(245, 106, 0, 0.07);
+  font-size: 0.9rem;
+}
+
+thead tr {
+  background: #c38520;
+  border-bottom: 1px solid #000000;
+}
+
+th {
+  padding: 13px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #fafafa;
+}
+
+td {
+  padding: 13px 16px;
+  color: #0b0601;
+  border-bottom: 1px solid #000000;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #d6ae6e;
+}
+
+/* Buttons */
+button {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  margin-right: 6px;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button[type="submit"] {
+  background: #e8603a;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(232, 96, 58, 0.35);
+}
+
+button[type="submit"]:hover {
+  background: #d4522e;
+  box-shadow: 0 4px 14px rgba(232, 96, 58, 0.4);
+}
+
+button[type="button"] {
+  background: #f5e6d3;
+  color: #7a4f35;
+}
+
+button[type="button"]:hover {
+  background: #edd9bf;
+}
+
+/* Row action buttons */
+td button {
+  padding: 5px 12px;
+  font-size: 0.78rem;
+}
+
+td button:first-child {
+  background: #dff0d8;
+  color: #3a7a3a;
+  box-shadow: none;
+}
+
+td button:first-child:hover {
+  background: #cce8c0;
+}
+
+td button:last-child {
+  background: #fde0d0;
+  color: #c0402a;
+  margin-right: 0;
+  box-shadow: none;
+}
+
+td button:last-child:hover {
+  background: #facab6;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background: #fffaf4;
+  border: 1px solid #f0dfc0;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 18px rgba(180, 100, 40, 0.07);
+}
+
+input {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.875rem;
+  padding: 8px 13px;
+  border: 1.5px solid #e8d0b0;
+  border-radius: 10px;
+  background: #fff8f0;
+  color: #3b2a1a;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  min-width: 130px;
+}
+
+input:focus {
+  border-color: #e8603a;
+  box-shadow: 0 0 0 3px rgba(232, 96, 58, 0.14);
+  background: #ffffff;
+}
+
+input::placeholder {
+  color: #c4a882;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #f0dfc0;
+  margin: 1.75rem 0;
 }

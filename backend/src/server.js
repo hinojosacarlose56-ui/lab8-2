@@ -1,10 +1,13 @@
 import 'dotenv/config';                 // loads .env locally; no harm in Azure
 import express from 'express';
-// import cors from 'cors';
+import cors from 'cors';
 import { Sequelize, DataTypes } from 'sequelize';
 
 const app = express();
-//app.use(cors());                        // minimal; allows all origins
+app.use(cors(
+
+)
+);                        // minimal; allows all origins
 
 app.use(express.json());
 
@@ -32,6 +35,25 @@ app.get('/api/employees', async (_req, res) => {
   } catch (e) { res.status(500).json({ error: 'Failed to fetch employees' }); }
 });
 
+//Update employee by id
+app.put('/api/employees/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { first_name, last_name, email, birthdate, salary } = req.body;
+    const [updated] = await Employee.update({
+      first_name,
+      last_name,
+      email,
+      birthdate: birthdate || null,
+      salary: salary === '' || salary === undefined ? null : Number(salary)
+    }, { where: { employee_id: id } });
+    if (updated) {
+      const updatedEmployee = await Employee.findOne({ where: { employee_id: id } });
+      res.json(updatedEmployee);
+    } else res.status(404).json({ error: 'Employee not found' });
+  } catch (e) { res.status(500).json({ error: 'Failed to update employee' }); }
+});
+
 // INSERT: add employee
 app.post('/api/employees', async (req, res) => {
   try {
@@ -45,6 +67,16 @@ app.post('/api/employees', async (req, res) => {
     });
     res.status(201).json(row);
   } catch (e) { res.status(500).json({ error: 'Failed to create employee' }); }
+});
+
+//Delete employee by id
+app.delete('/api/employees/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await Employee.destroy({ where: { employee_id: id } });
+    if (deleted) res.json({ message: 'Employee deleted' });
+    else res.status(404).json({ error: 'Employee not found' });
+  } catch (e) { res.status(500).json({ error: 'Failed to delete employee' }); }
 });
 
 const port = process.env.PORT || 4000;
